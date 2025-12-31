@@ -113,4 +113,11 @@ h1 { color: var(--krds-blue); font-weight: bold; margin-bottom: 1.5rem; font-siz
 .markdown-content:deep(strong) {
   color: var(--krds-text-primary);
 }
+
+@media (max-width: 599px) { /* Apply on screens smaller than 600px (mobile) */
+  .markdown-content {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
+  }
+}
 </style>
