@@ -14,7 +14,7 @@
     </div>
     <div class="tab-panels">
       <div
-        v-for="(tab, index) in tabs"
+        v-for="(_, index) in tabs"
         :key="index"
         v-show="activeTab === index"
         class="tab-panel"

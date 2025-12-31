@@ -5,9 +5,6 @@ import { useTyping } from '../composables/useTyping';
 // Helper function for delays
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
-// --- Template Refs ---
-const homeContainer = ref<HTMLElement | null>(null);
-
 // --- Scrolling ---
 const scrollToBottom = () => {
   nextTick(() => {
@@ -93,7 +90,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="home-container" ref="homeContainer">
+  <div class="home-container">
     <!-- Slogan -->
     <div v-if="showSlogan" class="terminal-line">
       <span class="prompt-user">marusoft@dev</span><span class="prompt-symbol">:~$</span>
