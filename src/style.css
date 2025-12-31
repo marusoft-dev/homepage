@@ -1,16 +1,16 @@
 /* KRDS Base Styles */
 
 :root {
-  /* Main Theme / Terminal Palette */
-  --krds-blue: #1CB6BE;
-  --krds-green: #e5c07b; /* Softer, complementary yellow */
+  /* Main Theme / Light Palette */
+  --krds-blue: #1CB6BE; /* Teal/Cyan */
+  --krds-green: #e5c07b; /* Keeping this for now */
   --krds-red: #ff7b72;
-  --krds-text-username: #000000; /* User-requested black for username */
-  --krds-text-primary: #c9d1d9;
-  --krds-text-secondary: #8b949e;
-  --krds-background: #010409;
-  --krds-surface: #0d1117;
-  --krds-gray-light: #30363d;
+  --krds-text-username: #000000; /* Black for username */
+  --krds-text-primary: #212529;   /* Dark gray for primary text */
+  --krds-text-secondary: #6c757d; /* Lighter gray for secondary text */
+  --krds-background: #FFFFFF;    /* White background */
+  --krds-surface: #f8f9fa;      /* Light gray for surface elements */
+  --krds-gray-light: #dee2e6;    /* Light gray for borders/dividers */
 
   /* Font */
   font-family: 'Pretendard GOV', sans-serif;
@@ -75,6 +75,40 @@ a:hover {
 
   text-decoration: underline;
 
+}
+
+/* Form and Button Styles */
+button, .btn {
+  background-color: var(--krds-blue);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-family: 'Pretendard GOV', sans-serif;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover, .btn:hover {
+  background-color: #17a2b8; /* Darker shade of --krds-blue */
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 1rem;
+  background-color: var(--krds-surface);
+  color: var(--krds-text-primary);
+  border: 1px solid var(--krds-gray-light);
+  border-radius: 5px;
+  font-family: 'Pretendard GOV', sans-serif;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--krds-blue);
+  box-shadow: 0 0 0 2px rgba(28, 182, 190, 0.25);
 }
 
 

@@ -40,10 +40,7 @@ const showFinalPrompt = ref(true);
       <span class="command">{{ processCmd }}</span>
     </div>
     <div class="output">
-      <p>1. 진단 및 분석  ==></p>
-      <p>2. 전략 수립      ==></p>
-      <p>3. 실행 및 전환  ==></p>
-      <p>4. 안정화 및 운영</p>
+      <p>1. 진단 및 분석 ==> 2. 전략 수립 ==> 3. 실행 및 전환 ==> 4. 안정화 및 운영</p>
     </div>
 
     <!-- Tech Stack -->
@@ -96,6 +93,7 @@ Database      | PostgreSQL, MySQL, Redis, Oracle 19c+
 
 .terminal-line {
   line-height: 1.5;
+  margin-top: 2rem;
   margin-bottom: 1rem;
 }
 
@@ -134,10 +132,6 @@ Database      | PostgreSQL, MySQL, Redis, Oracle 19c+
   font-family: 'SF Mono', 'Menlo', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
   white-space: pre;
   color: var(--krds-text-secondary);
-  background-color: var(--krds-background);
-  padding: 1rem;
-  border-radius: 4px;
-  border: 1px solid var(--krds-gray-light);
 }
 
 .cursor {

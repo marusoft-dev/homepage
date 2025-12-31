@@ -34,7 +34,6 @@
 }
 
 .prompt-user {
-  color: var(--krds-green);
   font-weight: bold;
 }
 
