@@ -1,0 +1,82 @@
+/* KRDS Base Styles */
+
+:root {
+  /* Main Theme / Terminal Palette */
+  --krds-blue: #1CB6BE;
+  --krds-green: #e5c07b; /* Softer, complementary yellow */
+  --krds-red: #ff7b72;
+  --krds-text-username: #000000; /* User-requested black for username */
+  --krds-text-primary: #c9d1d9;
+  --krds-text-secondary: #8b949e;
+  --krds-background: #010409;
+  --krds-surface: #0d1117;
+  --krds-gray-light: #30363d;
+
+  /* Font */
+  font-family: 'Pretendard GOV', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: var(--krds-text-primary);
+  background-color: var(--krds-background);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+
+
+/* Basic Reset */
+
+* {
+
+  margin: 0;
+
+  padding: 0;
+
+  box-sizing: border-box;
+
+}
+
+
+
+body {
+
+  min-height: 100vh;
+
+}
+
+
+
+#app {
+
+  margin: 0 auto;
+
+  font-weight: normal;
+
+}
+
+
+
+a {
+
+  color: var(--krds-blue);
+
+  text-decoration: none;
+
+}
+
+
+
+a:hover {
+
+  text-decoration: underline;
+
+}
+
+
+
+
