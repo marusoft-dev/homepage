@@ -27,18 +27,18 @@
   -webkit-text-size-adjust: 100%;
 
   /* Responsive Font Sizing */
-  font-size: 16px; /* Base font size for mobile */
+  font-size: 15px; /* Base font size for mobile, adjusted for better readability */
 }
 
 @media (min-width: 600px) { /* Tablets and larger */
   :root {
-    font-size: 17px;
+    font-size: 16px; /* Adjusted to maintain relative sizing */
   }
 }
 
 @media (min-width: 900px) { /* Desktops and larger */
   :root {
-    font-size: 18px;
+    font-size: 17px; /* Adjusted to maintain relative sizing */
   }
 }
 
@@ -60,9 +60,8 @@
 
 
 body {
-
   min-height: 100vh;
-
+  overflow-x: auto; /* Enable horizontal scrolling for overflowing content */
 }
 
 
