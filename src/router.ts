@@ -2,7 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 import Home from './views/Home.vue';
 import TermsOfService from './views/TermsOfService.vue';
 import PrivacyPolicy from './views/PrivacyPolicy.vue';
-import CaseStudies from './views/CaseStudies.vue';
+import CaseProjects from './views/CaseProjects.vue';
 import ContactUs from './views/ContactUs.vue';
 
 const routes = [
@@ -12,9 +12,9 @@ const routes = [
     component: Home,
   },
   {
-    path: '/case-studies',
-    name: 'CaseStudies',
-    component: CaseStudies,
+    path: '/case-projects',
+    name: 'CaseProjects',
+    component: CaseProjects,
   },
   {
     path: '/contact',

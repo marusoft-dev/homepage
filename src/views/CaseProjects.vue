@@ -2,7 +2,7 @@
   <div class="content-container">
     <div class="terminal-line">
       <span class="prompt-user">marusoft@dev</span><span class="prompt-symbol">:~$</span>
-      <span class="command">./show-case-studies.sh</span>
+      <span class="command">./show-case-projects.sh</span>
     </div>
     <div class="output">
       <h1>[ 구축사례 ]</h1>

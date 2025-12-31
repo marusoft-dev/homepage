@@ -8,7 +8,7 @@
       <div class="spacer"></div>
       <nav class="navigation">
         <ul>
-          <li><router-link to="/case-studies">[ 구축사례 ]</router-link></li>
+          <li><router-link to="/case-projects">[ 구축사례 ]</router-link></li>
           <li><router-link to="/contact">[ 문의하기 ]</router-link></li>
         </ul>
       </nav>
