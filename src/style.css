@@ -25,7 +25,23 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  /* Responsive Font Sizing */
+  font-size: 16px; /* Base font size for mobile */
 }
+
+@media (min-width: 600px) { /* Tablets and larger */
+  :root {
+    font-size: 17px;
+  }
+}
+
+@media (min-width: 900px) { /* Desktops and larger */
+  :root {
+    font-size: 18px;
+  }
+}
+
 
 
 
