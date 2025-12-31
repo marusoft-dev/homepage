@@ -74,5 +74,27 @@
 .navigation a:hover {
   color: var(--krds-blue);
 }
+
+@media (max-width: 600px) {
+  .krds-header {
+    padding: 0.8rem 1rem; /* Adjust padding for smaller screens */
+  }
+
+  .logo-image {
+    height: 28px; /* Slightly smaller logo image */
+  }
+
+  .logo-text {
+    font-size: 1rem; /* Smaller logo text for mobile */
+  }
+
+  .navigation li {
+    margin-left: 1rem; /* Reduce spacing between nav items */
+  }
+
+  .navigation a {
+    font-size: 0.8rem; /* Significantly smaller font for nav links on mobile */
+  }
+}
 </style>
 
