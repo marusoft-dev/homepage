@@ -1,10 +1,10 @@
 <template>
   <header class="krds-header">
     <div class="header-container">
-      <a href="/" class="logo-link">
+      <router-link to="/" class="logo-link">
         <img src="https://avatars.githubusercontent.com/u/172918290?s=200&v=4" alt="마루소프트 로고" class="logo-image">
         <span class="logo-text">[ marusoft ]</span>
-      </a>
+      </router-link>
       <div class="spacer"></div>
       <nav class="navigation">
         <ul>
