@@ -21,7 +21,7 @@
 import { ref } from 'vue';
 import PopupForm from '../components/PopupForm.vue';
 import PopupList from '../components/PopupList.vue';
-import { Popup } from '../composables/usePopups';
+import type { Popup } from '../composables/usePopups';
 
 const selectedPopup = ref<Popup | null>(null);
 

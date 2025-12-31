@@ -3,6 +3,7 @@ import Home from './views/Home.vue';
 import TermsOfService from './views/TermsOfService.vue';
 import PrivacyPolicy from './views/PrivacyPolicy.vue';
 import CaseProjects from './views/CaseProjects.vue';
+import CaseProjectDetail from './views/CaseProjectDetail.vue';
 import ContactUs from './views/ContactUs.vue';
 
 const routes = [
@@ -15,6 +16,11 @@ const routes = [
     path: '/case-projects',
     name: 'CaseProjects',
     component: CaseProjects,
+  },
+  {
+    path: '/case-projects/:date/:slug',
+    name: 'CaseProjectDetail',
+    component: CaseProjectDetail,
   },
   {
     path: '/contact',

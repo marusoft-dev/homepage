@@ -1,43 +1,47 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 import matter from 'gray-matter';
-import { marked } from 'marked';
 import { Buffer } from 'buffer/';
+
+interface CaseStudy {
+  title: string;
+  summary: string;
+  ready: boolean;
+  slug: string;
+  date: string;
+}
 
 // Polyfill Buffer for the gray-matter library
 (window as any).Buffer = Buffer;
 
 // --- State Management ---
-const selectedCase = ref<any>(null);
-const caseStudies = ref<any[]>([]);
+const caseStudies = ref<CaseStudy[]>([]);
 const isLoading = ref<boolean>(true);
+const router = useRouter();
 
 // --- Methods ---
 const loadCaseStudies = async () => {
   isLoading.value = true;
   try {
     const posts = import.meta.glob('../../_posts/*.md', { query: '?raw', import: 'default' });
-    const loadedStudies = [];
+    const loadedStudies: CaseStudy[] = [];
     const slugRegex = /\/(\d{4}-\d{2}-\d{2})-(.*)\.md$/;
 
     for (const path in posts) {
-      const rawContent = await posts[path]() as string;
-      
-      if (typeof rawContent !== 'string') {
-        console.error(`Could not extract raw string content from module for path: ${path}`);
-        continue;
-      }
-
-      const { data, content } = matter(rawContent);
-      const htmlContent = await marked.parse(content);
-      const match = path.match(slugRegex);
-      
-      if (match) {
-        loadedStudies.push({
-          ...data,
-          slug: match[2],
-          content: htmlContent,
-        });
+      const post = posts[path];
+      if (post) {
+        const rawContent = await post() as string;
+        const { data } = matter(rawContent);
+        const match = path.match(slugRegex);
+        
+        if (match) {
+          loadedStudies.push({
+            ...(data as any),
+            slug: match[2],
+            date: match[1], // Use date from filename for consistency
+          });
+        }
       }
     }
     // Sort by date, newest first
@@ -51,40 +55,21 @@ const loadCaseStudies = async () => {
   }
 };
 
-const handleHashChange = () => {
-  const hash = window.location.hash.replace(/^#\/?/, '');
-  if (hash) {
-    const study = caseStudies.value.find(s => s.slug === hash);
-    selectedCase.value = study || null;
-  } else {
-    selectedCase.value = null;
+const selectCase = (caseStudy: CaseStudy) => {
+  if (caseStudy.ready) {
+    router.push(`/case-projects/${caseStudy.date}/${caseStudy.slug}`);
   }
-};
-
-const selectCase = (caseStudy: any) => {
-  window.location.hash = caseStudy.slug;
-};
-
-const goBackToList = () => {
-  window.location.hash = '';
 };
 
 // --- Lifecycle Hooks ---
 onMounted(async () => {
   await loadCaseStudies();
-  handleHashChange(); 
-  window.addEventListener('hashchange', handleHashChange);
-});
-
-onUnmounted(() => {
-  window.removeEventListener('hashchange', handleHashChange);
 });
 </script>
 
 <template>
   <div class="content-container">
-    <!-- List View -->
-    <div v-if="!selectedCase">
+    <div>
       <div class="terminal-line">
         <span class="prompt-user">marusoft@dev</span><span class="prompt-symbol">:~$</span>
         <span class="command">./show-case-projects.sh</span>
@@ -127,7 +112,7 @@ onUnmounted(() => {
           <div v-if="caseStudies.length === 0">
             <p>등록된 구축사례가 없습니다.</p>
           </div>
-          <div v-for="c in caseStudies" :key="c.slug" class="case-list-item" @click="selectCase(c)">
+          <div v-for="c in caseStudies" :key="c.slug" class="case-list-item" @click="selectCase(c)" :class="{ 'disabled': !c.ready }">
             <div class="item-header">
               <h2>{{ c.title }}</h2>
               <span class="item-date">{{ c.date }}</span>
@@ -135,27 +120,6 @@ onUnmounted(() => {
             <p>{{ c.summary }}</p>
             <span v-if="!c.ready" class="status-badge">[ 준비중 ]</span>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Detail View -->
-    <div v-if="selectedCase">
-       <div class="terminal-line">
-        <span class="prompt-user">marusoft@dev</span><span class="prompt-symbol">:~$</span>
-        <span class="command">./show-case-projects.sh --case={{ selectedCase.slug }}</span>
-      </div>
-       <div class="output">
-        <button @click="goBackToList" class="back-button">[ < 목록으로 돌아가기 ]</button>
-        
-        <h1>{{ selectedCase.title }}</h1>
-        <div class="item-date detail-date">{{ selectedCase.date }}</div>
-
-        <div v-if="selectedCase.ready">
-          <div class="markdown-content" v-html="selectedCase.content"></div>
-        </div>
-        <div v-else>
-          <p>해당 구축사례의 상세 내용은 현재 준비중입니다. 곧 업데이트될 예정입니다.</p>
         </div>
       </div>
     </div>
@@ -172,6 +136,8 @@ h2 { font-size: 1.3rem; margin: 0; }
 p { line-height: 1.7; margin-bottom: 1rem; }
 .case-list-item { border: 1px solid var(--krds-gray-light); padding: 1.5rem; margin-bottom: 1rem; border-radius: 8px; cursor: pointer; transition: background-color 0.2s, border-color 0.2s; }
 .case-list-item:hover { background-color: var(--krds-surface); border-color: var(--krds-blue); }
+.case-list-item.disabled { cursor: not-allowed; background-color: var(--krds-surface); opacity: 0.6; }
+.case-list-item.disabled:hover { border-color: var(--krds-gray-light); }
 .case-list-item p { margin-top: 1rem; margin-bottom: 0; }
 .item-header { display: flex; justify-content: space-between; align-items: center; }
 .item-date { color: var(--krds-text-secondary); font-size: 0.9rem; }

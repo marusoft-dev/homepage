@@ -16,7 +16,8 @@
 </template>
 
 <script setup lang="ts">
-import { usePopups, Popup } from '../composables/usePopups';
+import { usePopups } from '../composables/usePopups';
+import type { Popup } from '../composables/usePopups';
 
 const { popups, deletePopup } = usePopups();
 const emit = defineEmits(['edit']);

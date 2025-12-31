@@ -34,8 +34,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, defineProps } from 'vue';
-import { usePopups, Popup } from '../composables/usePopups';
+import { ref, watch } from 'vue';
+import { usePopups } from '../composables/usePopups';
+import type { Popup } from '../composables/usePopups';
 
 const props = defineProps<{
   popupToEdit: Popup | null;
